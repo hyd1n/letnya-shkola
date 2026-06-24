@@ -1,9 +1,4 @@
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Карьера | Инженер связи",
-  description: "Карьерный путь и возможности роста инженера связи",
-};
+"use client";
 
 const levels = [
   {
@@ -67,85 +62,166 @@ const directions = [
 
 export default function CareerPage() {
   return (
-    <div className="mx-auto max-w-5xl px-4 py-16">
-      <div className="mb-12 text-center">
-        <h1 className="mb-4 text-3xl font-bold sm:text-4xl">Карьера</h1>
-        <p className="mx-auto max-w-2xl text-muted">
-          Карьерный путь инженера связи — это последовательный рост от
-          техника до технического директора с возможностью специализации.
-        </p>
-      </div>
+    <div className="px-6 py-20 sm:py-28">
+      <div className="mx-auto max-w-[980px]">
+        {/* Header */}
+        <div className="mb-20 text-center">
+          <h1
+            className="mb-5 text-[clamp(2rem,5vw,3.5rem)] font-bold tracking-tight"
+            style={{ letterSpacing: "-0.03em", lineHeight: "1.05" }}
+          >
+            Карьера
+          </h1>
+          <p
+            className="mx-auto max-w-lg text-[17px] sm:text-lg"
+            style={{ color: "var(--fg-secondary)", lineHeight: "1.6" }}
+          >
+            Карьерный путь инженера связи — это последовательный рост от
+            техника до технического директора.
+          </p>
+        </div>
 
-      <h2 className="mb-8 text-center text-2xl font-semibold">
-        Карьерная лестница
-      </h2>
-      <div className="relative mb-20">
-        <div className="absolute left-4 top-0 bottom-0 hidden w-px bg-border sm:block sm:left-1/2" />
-        <div className="space-y-8">
+        {/* Career ladder */}
+        <h2
+          className="mb-10 text-[22px] font-semibold tracking-tight sm:text-[24px]"
+          style={{ letterSpacing: "-0.03em" }}
+        >
+          Карьерная лестница
+        </h2>
+        <div className="mb-24 space-y-6">
           {levels.map((level, i) => (
             <div
               key={level.stage}
-              className={`relative flex flex-col sm:flex-row ${
-                i % 2 === 0 ? "sm:flex-row" : "sm:flex-row-reverse"
-              } items-start gap-4`}
+              className="rounded-[var(--radius-xl)] p-6 sm:p-8 transition-all duration-300"
+              style={{
+                backgroundColor: "var(--card-bg)",
+                border: "1px solid var(--card-border)",
+                boxShadow: "var(--card-shadow)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = "var(--card-shadow-hover)";
+                e.currentTarget.style.transform = "translateY(-1px)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = "var(--card-shadow)";
+                e.currentTarget.style.transform = "translateY(0)";
+              }}
             >
-              <div
-                className={`hidden sm:block sm:w-1/2 ${
-                  i % 2 === 0 ? "sm:text-right sm:pr-8" : "sm:text-left sm:pl-8"
-                }`}
-              >
-                <div className="inline-block rounded-xl border border-border bg-card p-5 text-left sm:text-inherit">
-                  <span className="mb-1 inline-block rounded-full bg-accent-light px-2 py-0.5 text-xs font-medium text-accent">
-                    {level.stage}
-                  </span>
-                  <h3 className="mt-1 text-lg font-semibold">{level.title}</h3>
-                  <p className="mb-2 text-sm text-muted">
-                    ЗП: {level.salary} · Опыт: {level.experience}
-                  </p>
-                  <ul className="space-y-1 text-sm text-muted">
+              <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
+                <div className="flex items-center gap-4 sm:min-w-[200px]">
+                  <div
+                    className="flex h-14 w-14 shrink-0 items-center justify-center rounded-[var(--radius-md)] text-[15px] font-bold text-white"
+                    style={{
+                      background: `linear-gradient(135deg, var(--gradient-start), var(--gradient-end))`,
+                      boxShadow: "0 2px 8px rgba(52, 199, 89, 0.25)",
+                    }}
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </div>
+                  <div>
+                    <span
+                      className="mb-1 inline-block rounded-full px-2.5 py-0.5 text-[11px] font-medium"
+                      style={{
+                        background: "linear-gradient(135deg, rgba(52,199,89,0.12), rgba(48,209,88,0.06))",
+                        color: "var(--accent)",
+                      }}
+                    >
+                      {level.stage}
+                    </span>
+                    <h3
+                      className="text-[18px] font-semibold"
+                      style={{ letterSpacing: "-0.02em" }}
+                    >
+                      {level.title}
+                    </h3>
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <div className="mb-3 flex flex-wrap gap-3">
+                    <span
+                      className="rounded-full px-3 py-1 text-[12px] font-medium"
+                      style={{
+                        backgroundColor: "var(--divider)",
+                        color: "var(--fg-secondary)",
+                      }}
+                    >
+                      ЗП: {level.salary}
+                    </span>
+                    <span
+                      className="rounded-full px-3 py-1 text-[12px] font-medium"
+                      style={{
+                        backgroundColor: "var(--divider)",
+                        color: "var(--fg-secondary)",
+                      }}
+                    >
+                      Опыт: {level.experience}
+                    </span>
+                  </div>
+                  <ul className="grid gap-1.5 sm:grid-cols-2">
                     {level.tasks.map((t) => (
-                      <li key={t}>• {t}</li>
+                      <li
+                        key={t}
+                        className="flex items-center gap-2 text-[14px]"
+                        style={{ color: "var(--fg-secondary)" }}
+                      >
+                        <span className="h-1 w-1 shrink-0 rounded-full bg-accent" />
+                        {t}
+                      </li>
                     ))}
                   </ul>
                 </div>
               </div>
-              <div className="absolute left-4 hidden h-4 w-4 rounded-full border-2 border-accent bg-card sm:block sm:left-1/2 sm:-translate-x-1/2" style={{ top: "1.5rem" }} />
-              <div className="sm:hidden">
-                <div className="rounded-xl border border-border bg-card p-5">
-                  <span className="mb-1 inline-block rounded-full bg-accent-light px-2 py-0.5 text-xs font-medium text-accent">
-                    {level.stage}
-                  </span>
-                  <h3 className="mt-1 text-lg font-semibold">{level.title}</h3>
-                  <p className="mb-2 text-sm text-muted">
-                    ЗП: {level.salary} · Опыт: {level.experience}
-                  </p>
-                  <ul className="space-y-1 text-sm text-muted">
-                    {level.tasks.map((t) => (
-                      <li key={t}>• {t}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-              <div className="hidden sm:block sm:w-1/2" />
             </div>
           ))}
         </div>
-      </div>
 
-      <h2 className="mb-8 text-center text-2xl font-semibold">
-        Области специализации
-      </h2>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {directions.map((d) => (
-          <div
-            key={d.title}
-            className="rounded-xl border border-border bg-card p-5 transition-all hover:border-accent hover:shadow-md"
-          >
-            <span className="mb-2 block text-2xl">{d.icon}</span>
-            <h3 className="mb-1 font-semibold">{d.title}</h3>
-            <p className="text-sm text-muted">{d.description}</p>
-          </div>
-        ))}
+        {/* Specializations */}
+        <h2
+          className="mb-10 text-[22px] font-semibold tracking-tight sm:text-[24px]"
+          style={{ letterSpacing: "-0.03em" }}
+        >
+          Области специализации
+        </h2>
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {directions.map((d) => (
+            <div
+              key={d.title}
+              className="rounded-[var(--radius-lg)] p-6 transition-all duration-300"
+              style={{
+                backgroundColor: "var(--card-bg)",
+                border: "1px solid var(--card-border)",
+                boxShadow: "var(--card-shadow)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = "var(--card-shadow-hover)";
+                e.currentTarget.style.transform = "translateY(-2px)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = "var(--card-shadow)";
+                e.currentTarget.style.transform = "translateY(0)";
+              }}
+            >
+              <div
+                className="mb-4 flex h-12 w-12 items-center justify-center rounded-[var(--radius-sm)] text-2xl"
+                style={{ backgroundColor: "var(--divider)" }}
+              >
+                {d.icon}
+              </div>
+              <h3
+                className="mb-1 text-[17px] font-semibold"
+                style={{ letterSpacing: "-0.02em" }}
+              >
+                {d.title}
+              </h3>
+              <p
+                className="text-[13px] leading-relaxed"
+                style={{ color: "var(--fg-secondary)" }}
+              >
+                {d.description}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
