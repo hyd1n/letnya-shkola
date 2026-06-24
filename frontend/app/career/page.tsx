@@ -107,7 +107,7 @@ export default function CareerPage() {
                 e.currentTarget.style.transform = "translateY(0)";
               }}
             >
-              <div className="grid grid-cols-3 gap-6 sm:flex-row sm:items-start">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6 sm:items-start">
                 <div className="flex items-center gap-4 sm:min-w-[200px]" style={
                   {
                     height:"100%"
