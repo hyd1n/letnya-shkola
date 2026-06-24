@@ -1,6 +1,6 @@
-import Container from "@/components/Container";
-import ContentCard from "@/components/ContentCard";
-import CopyButton from "@/components/CopyButton";
+import Container from "../components/Container";
+import ContentCard from "../components/ContentCard";
+import CopyButton from "../components/CopyButton";
 import { Button, Typography } from "antd";
 
 const { Title, Paragraph } = Typography;
@@ -15,9 +15,7 @@ export default function Home() {
         <Paragraph className="text-lg">
           Quickly build beautiful pages with Tailwind and Ant Design.
         </Paragraph>
-        <Button type="primary" size="large" href="/about">
-          Learn more
-        </Button>
+        <a href="/about" className="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Learn more</a>
       </section>
 
       {/* Feature cards */}
