@@ -1,0 +1,38 @@
+# Node & npm
+node_modules/
+package-lock.json
+
+# Next.js build output
+.next/
+out/
+
+# Production files
+.vercel/
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE / editor folders
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Misc
+*.log
+.next
+.claude
+.npm-cache
+node_modules

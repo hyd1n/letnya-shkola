@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Ant Design custom overrides */
+.ant-btn {
+  @apply rounded-md;
+}
