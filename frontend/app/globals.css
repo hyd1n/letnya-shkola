@@ -41,6 +41,8 @@
   --gradient-end: #34c759;
   --divider: rgba(255, 255, 255, 0.08);
   --scrollbar-thumb: rgba(255, 255, 255, 0.15);
+  /* Dark theme gradient without white components */
+  --dynamic-bg: linear-gradient(135deg, #2d1b33, #1b2d33);
 }
 
 @theme inline {
@@ -68,6 +70,7 @@ body {
   background-attachment: fixed;
   color: var(--fg);
   font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  transition: background 2s ease;
   letter-spacing: -0.01em;
   line-height: 1.5;
 }

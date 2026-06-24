@@ -60,55 +60,68 @@ function randomAngle() {
 }
 
 export default function GradientBackground() {
+  // Refs to store last known scroll position and colors for smooth transitions
   const lastScroll = useRef(0);
   const lastColors = useRef<{ c1: string; c2: string }>({ c1: "", c2: "" });
   const ticking = useRef(false);
 
+  // Helper to apply gradient CSS variables with transition support
+  const applyGradient = (c1: string, c2: string, angle: number) => {
+    const root = document.documentElement;
+    root.style.setProperty("--bg-angle", `${angle}deg`);
+    root.style.setProperty("--bg-color-1", c1);
+    root.style.setProperty("--bg-color-2", c2);
+  };
+
+  // Initialise gradient on mount and also when the theme (light/dark) changes
   useEffect(() => {
-    const isDark = document.documentElement.classList.contains("dark");
-    const colors = getColors(isDark);
+    const setInitial = () => {
+      const isDark = document.documentElement.classList.contains("dark");
+      const colors = getColors(isDark);
+      const c1 = pickRandom(colors);
+      const c2 = pickRandom(colors, c1);
+      lastColors.current = { c1, c2 };
+      const angle = randomAngle();
+      applyGradient(c1, c2, angle);
+    };
+    setInitial();
 
-    const c1 = pickRandom(colors);
-    const c2 = pickRandom(colors, c1);
-    lastColors.current = { c1, c2 };
-
-    const angle = randomAngle();
-    document.documentElement.style.setProperty(
-      "--dynamic-bg",
-      `linear-gradient(${angle}deg, ${c1}, ${c2})`
-    );
+    // Observe class changes on <html> to react to theme switches
+    const observer = new MutationObserver((mutations) => {
+      for (const m of mutations) {
+        if (m.attributeName === "class") {
+          setInitial();
+          break;
+        }
+      }
+    });
+    observer.observe(document.documentElement, { attributes: true });
+    return () => observer.disconnect();
   }, []);
 
+  // Update gradient on scroll, throttled via requestAnimationFrame for performance
   useEffect(() => {
     const isDark = document.documentElement.classList.contains("dark");
     const colors = getColors(isDark);
 
-    function onScroll() {
+    const onScroll = () => {
       const scrollY = window.scrollY;
       const diff = Math.abs(scrollY - lastScroll.current);
-
       if (diff < 120) return;
 
       if (!ticking.current) {
         ticking.current = true;
-
         requestAnimationFrame(() => {
           lastScroll.current = scrollY;
-
           const c1 = pickRandom(colors, lastColors.current.c1);
           const c2 = pickRandom(colors, c1);
           lastColors.current = { c1, c2 };
-
           const angle = randomAngle();
-          document.documentElement.style.setProperty(
-            "--dynamic-bg",
-            `linear-gradient(${angle}deg, ${c1}, ${c2})`
-          );
-
+          applyGradient(c1, c2, angle);
           ticking.current = false;
         });
       }
-    }
+    };
 
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
