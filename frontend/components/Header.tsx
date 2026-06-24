@@ -10,6 +10,7 @@ const navLinks = [
   { href: "/skills", label: "Навыки" },
   { href: "/career", label: "Карьера" },
   { href: "/education", label: "Образование" },
+  { href: "/quiz", label: "Тест" },
 ];
 
 export default function Header() {
@@ -35,7 +36,7 @@ export default function Header() {
             className="text-[17px] font-semibold tracking-tight"
             style={{ letterSpacing: "-0.02em" }}
           >
-            <span className="text-accent">⚡</span> Инженер связи
+            <span className="text-accent">⚡</span> Инженер-проектировщик сетей
           </Link>
           <nav className="hidden items-center gap-1 md:flex">
             {navLinks.map((link) => (

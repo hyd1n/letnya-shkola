@@ -7,7 +7,7 @@ const sections = [
     href: "/about",
     icon: "📡",
     title: "О профессии",
-    description: "Кто такой инженер связи и чем он занимается",
+    description: "Кто такой инженер-проектировщик сетей и чем он занимается",
   },
   {
     href: "/skills",
@@ -19,13 +19,19 @@ const sections = [
     href: "/career",
     icon: "📈",
     title: "Карьера",
-    description: "Карьерный путь и возможности роста",
+    description: "Карьерный путь и зарплатные ориентиры",
   },
   {
     href: "/education",
     icon: "🎓",
-    title: "Образование",
-    description: "Где учиться и какие экзамены сдавать",
+    title: "Как начать",
+    description: "Пошаговый план входа в профессию",
+  },
+  {
+    href: "/quiz",
+    icon: "🧪",
+    title: "Тест",
+    description: "Проверь себя — подходит ли тебе эта профессия",
   },
 ];
 
@@ -50,9 +56,9 @@ export default function Home() {
             className="mb-6 text-[clamp(2.5rem,6vw,4rem)] font-bold tracking-tight"
             style={{ letterSpacing: "-0.03em", lineHeight: "1.05" }}
           >
-            Инженер
+            Инженер-
             <br />
-            <span className="text-accent">связи</span>
+            <span className="text-accent">проектировщик сетей</span>
           </h1>
           <p
             className="mx-auto mb-10 max-w-lg text-lg sm:text-xl"
@@ -62,8 +68,9 @@ export default function Home() {
               lineHeight: "1.5",
             }}
           >
-            Специалист, который проектирует, создаёт и обслуживает сети связи —
-            от мобильных вышек до спутниковых систем.
+            Человек, который придумывает, как соединить компьютеры, серверы и
+            офисы в единую, быструю и безопасную сеть — и следит, чтобы она не
+            падала.
           </p>
           <div className="flex justify-center gap-4">
             <Link
@@ -86,7 +93,7 @@ export default function Home() {
               </svg>
             </Link>
             <Link
-              href="/education"
+              href="/quiz"
               className="inline-flex items-center rounded-full px-7 py-3 text-[15px] font-medium transition-all duration-200"
               style={{
                 backgroundColor: "var(--card-bg)",
@@ -94,7 +101,7 @@ export default function Home() {
                 boxShadow: "var(--card-shadow)",
               }}
             >
-              Как стать
+              Пройти тест
             </Link>
           </div>
         </div>
@@ -109,7 +116,7 @@ export default function Home() {
           >
             Что нужно знать
           </h2>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {sections.map((s) => (
               <Link
                 key={s.href}
@@ -171,9 +178,9 @@ export default function Home() {
             </h2>
             <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
               {[
-                { value: "5G / 6G", label: "Новые стандарты" },
-                { value: "100K+", label: "Вакансий в России" },
-                { value: "от 80K₽", label: "Средняя зарплата" },
+                { value: "CCNA", label: "Входной сертификат" },
+                { value: "120K+", label: "Средняя зарплата ₽" },
+                { value: "3–5", label: "Лет до Senior" },
                 { value: "∞", label: "Спрос на рынке" },
               ].map((stat) => (
                 <div key={stat.label} className="text-center">

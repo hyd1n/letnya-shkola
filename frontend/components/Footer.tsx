@@ -13,7 +13,7 @@ export default function Footer() {
               className="text-[13px] font-semibold"
               style={{ letterSpacing: "-0.01em" }}
             >
-              <span className="text-accent">⚡</span> Инженер связи
+              <span className="text-accent">⚡</span> Сетевой инженер
             </p>
             <p className="mt-0.5 text-[12px]" style={{ color: "var(--fg-secondary)" }}>
               Учебный проект

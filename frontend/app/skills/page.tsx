@@ -1,21 +1,28 @@
 "use client";
 
 const hardSkills = [
-  { name: "Сетевые технологии", level: 90, detail: "TCP/IP, MPLS, VLAN, BGP" },
-  { name: "Радиочастоты", level: 85, detail: "Частотное планирование, спектральный анализ" },
-  { name: "Программирование", level: 70, detail: "Python, C/C++, Bash" },
-  { name: "Оптоволокно", level: 75, detail: "OTDR, спlicing, проектирование линий" },
-  { name: "Оборудование", level: 80, detail: "Cisco, Juniper, Huawei, MikroTik" },
-  { name: "Безопасность", level: 65, detail: "Шифрование, firewall, VPN" },
+  { name: "Сетевые протоколы", level: 95, detail: "TCP/IP, DNS, DHCP, VLAN" },
+  { name: "Маршрутизация и коммутация", level: 90, detail: "Принципы маршрутизации и коммутации данных" },
+  { name: "Сетевая безопасность", level: 80, detail: "VPN, Firewall, защита от DDoS" },
+  { name: "Оборудование", level: 85, detail: "Cisco, Juniper, Huawei, MikroTik, Eltex" },
+  { name: "Мониторинг", level: 75, detail: "Zabbix, Nagios, Prometheus" },
+  { name: "Скрипты и автоматизация", level: 70, detail: "Python для автоматизации процессов" },
+  { name: "Виртуализация", level: 65, detail: "VMware ESXi, Hyper-V" },
+  { name: "ОС", level: 70, detail: "Linux / Windows Server" },
 ];
 
 const softSkills = [
-  { icon: "🧩", name: "Аналитическое мышление", description: "Умение разбираться в сложных системах и находить решения" },
-  { icon: "🤝", name: "Коммуникация", description: "Объяснять технические вещи простым языком коллегам и заказчикам" },
-  { icon: "⏰", name: "Управление временем", description: "Приоритизация задач, работа в условиях дедлайнов" },
-  { icon: "📖", name: "Самообучение", description: "Технологии меняются быстро — нужно постоянно учиться" },
-  { icon: "🎯", name: "Внимание к деталям", description: "Одна ошибка в настройке может уронить всю сеть" },
-  { icon: "💪", name: "Стрессоустойчивость", description: "Ночные дежурства, аварии, срочные ремонты" },
+  { icon: "📚", name: "Быстрая обучаемость", description: "Технологии меняются быстро — нужно успевать осваивать новое" },
+  { icon: "💪", name: "Стрессоустойчивость", description: "Нужно сохранять спокойствие, когда вся компания ждёт устранения сбоя" },
+  { icon: "💬", name: "Умение объяснять простым языком", description: "Чётко излагать мысли и находить общий язык с коллективом" },
+  { icon: "🎯", name: "Внимательность к деталям", description: "Ошибка в конфигурации может положить сеть всей компании" },
+  { icon: "🔧", name: "Готовность работать руками", description: "Непосредственный доступ к технике, а не только удалённо" },
+  { icon: "🤝", name: "Командная работа", description: "Взаимодействие со безопасниками, сисадминами, разработчиками" },
+];
+
+const certifications = [
+  { name: "CCNA", desc: "Cisco Certified Network Associate — входной билет в профессию" },
+  { name: "CCNP", desc: "Cisco Certified Network Professional — для опытных инженеров" },
 ];
 
 function SkillBar({ name, level, detail }: { name: string; level: number; detail: string }) {
@@ -69,8 +76,8 @@ export default function SkillsPage() {
             className="mx-auto max-w-lg text-[17px] sm:text-lg"
             style={{ color: "var(--fg-secondary)", lineHeight: "1.6" }}
           >
-            Инженер связи сочетает техническую экспертизу с мягкими навыками.
-            Вот что нужно для успешной карьеры.
+            Инженер-проектировщик сетей сочетает техническую экспертизу с мягкими
+            навыками. Вот что нужно для успешной карьеры.
           </p>
         </div>
 
@@ -154,25 +161,30 @@ export default function SkillsPage() {
             className="mb-5 text-[15px]"
             style={{ color: "var(--fg-secondary)" }}
           >
-            Профессиональные сертификаты подтверждают компетенции и повышают
-            конкурентоспособность на рынке:
+            Сертификации — знак квалификации в индустрии. Отрасль ориентируется
+            на стандарты Cisco:
           </p>
-          <div className="flex flex-wrap gap-2">
-            {["CCNA", "CCNP", "JNCIA", "HCIA", "RF Engineer", "LPIC"].map(
-              (cert) => (
-                <span
-                  key={cert}
-                  className="rounded-full px-4 py-1.5 text-[13px] font-medium"
-                  style={{
-                    background: "linear-gradient(135deg, rgba(52,199,89,0.12), rgba(48,209,88,0.06))",
-                    color: "var(--accent)",
-                    border: "1px solid rgba(52,199,89,0.15)",
-                  }}
-                >
-                  {cert}
+          <div className="grid gap-4 sm:grid-cols-2">
+            {certifications.map((c) => (
+              <div
+                key={c.name}
+                className="rounded-[var(--radius-md)] p-5"
+                style={{
+                  background: "linear-gradient(135deg, rgba(52,199,89,0.12), rgba(48,209,88,0.06))",
+                  border: "1px solid rgba(52,199,89,0.15)",
+                }}
+              >
+                <span className="mb-1 block text-[17px] font-bold text-accent">
+                  {c.name}
                 </span>
-              )
-            )}
+                <span
+                  className="text-[13px] leading-relaxed"
+                  style={{ color: "var(--fg-secondary)" }}
+                >
+                  {c.desc}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       </div>

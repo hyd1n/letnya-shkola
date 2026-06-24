@@ -2,28 +2,43 @@
 
 import Link from "next/link";
 
-const exams = [
-  { subject: "Математика", code: "02", importance: "Обязательный" },
-  { subject: "Русский язык", code: "01", importance: "Обязательный" },
-  { subject: "Физика", code: "03", importance: "Профильный" },
-  { subject: "Информатика", code: "04", importance: "Профильный" },
-];
-
-const universities = [
-  { name: "МТУСИ", city: "Москва", description: "Московский технический университет связи и информатики" },
-  { name: "СПбГУТ", city: "Санкт-Петербург", description: "Санкт-Петербургский университет телекоммуникаций" },
-  { name: "МАСИ", city: "Москва", description: "Московский авиационный институт" },
-  { name: "НГТУ", city: "Новосибирск", description: "Новосибирский государственный технический университет" },
-  { name: "КФУ", city: "Казань", description: "Казанский федеральный университет" },
-  { name: "ДВФУ", city: "Владивосток", description: "Дальневосточный федеральный университет" },
-];
-
 const steps = [
-  { number: "01", title: "Школа", description: "Углублённое изучение физики и информатики, участие в олимпиадах и кружках радиоэлектроники." },
-  { number: "02", title: "ЕГЭ", description: "Сдайте профильную физику и информатику. Высокие баллы открывают двери в лучшие вузы." },
-  { number: "03", title: "Университет", description: "4–6 лет обучения на факультете связи, телекоммуникаций или радиоэлектроники." },
-  { number: "04", title: "Практика", description: "Стажировки в телеком-компаниях, работа с реальным оборудованием, защита диплома." },
-  { number: "05", title: "Карьера", description: "Трудоустройство в оператора связи, vendor-компанию или интегратора." },
+  {
+    number: "01",
+    title: "Базовая теория",
+    description:
+      "Изучить модели OSI и TCP/IP, основы коммутации и маршрутизации, VLAN — без этого фундамента дальше двигаться сложно.",
+  },
+  {
+    number: "02",
+    title: "Практика в симуляторах",
+    description:
+      "Cisco Packet Tracer или GNS3/EVE-NG — тренировка на виртуальных сетях без покупки реального оборудования.",
+  },
+  {
+    number: "03",
+    title: "Сертификация",
+    description:
+      "Получить CCNA — входной билет в профессию, который ценится у работодателей даже без диплома профильного вуза.",
+  },
+  {
+    number: "04",
+    title: "Первая позиция",
+    description:
+      "Стартовать с junior Network Engineer или специалиста техподдержки L2/L3. Мониторинг, базовая настройка, инциденты под руководством старших.",
+  },
+  {
+    number: "05",
+    title: "Карьерный рост",
+    description:
+      "Junior → Network Engineer → Senior → Сетевой архитектор. Можно уйти в узкую специализацию — Security или облака.",
+  },
+];
+
+const salary = [
+  { level: "Junior", range: "60 000 – 100 000 ₽/мес" },
+  { level: "Middle (1–3 года)", range: "120 000 – 200 000 ₽/мес" },
+  { level: "Senior (от 6 лет)", range: "от 200 000 ₽/мес" },
 ];
 
 export default function EducationPage() {
@@ -36,14 +51,14 @@ export default function EducationPage() {
             className="mb-5 text-[clamp(2rem,5vw,3.5rem)] font-bold tracking-tight"
             style={{ letterSpacing: "-0.03em", lineHeight: "1.05" }}
           >
-            Образование
+            Как начать карьеру
           </h1>
           <p
             className="mx-auto max-w-lg text-[17px] sm:text-lg"
             style={{ color: "var(--fg-secondary)", lineHeight: "1.6" }}
           >
-            Как стать инженером связи: от школьного предмета до диплома
-            университета.
+            Пошаговый план, как стать инженером-проектировщиком сетей — от
+            студента до профессионала.
           </p>
         </div>
 
@@ -98,61 +113,18 @@ export default function EducationPage() {
           ))}
         </div>
 
-        {/* Exams */}
+        {/* Salary */}
         <h2
           className="mb-10 text-[22px] font-semibold tracking-tight sm:text-[24px]"
           style={{ letterSpacing: "-0.03em" }}
         >
-          Необходимые экзамены
+          Зарплатные ориентиры (Россия, 2025–2026)
         </h2>
-        <div className="mb-24 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {exams.map((e) => (
+        <div className="mb-24 grid gap-5 sm:grid-cols-3">
+          {salary.map((s) => (
             <div
-              key={e.code}
+              key={s.level}
               className="rounded-[var(--radius-lg)] p-6 text-center transition-all duration-300"
-              style={{
-                backgroundColor: "var(--card-bg)",
-                border: "1px solid var(--card-border)",
-                boxShadow: "var(--card-shadow)",
-              }}
-            >
-              <span
-                className="mb-1 block text-[11px] font-medium"
-                style={{ color: "var(--fg-secondary)" }}
-              >
-                Код: {e.code}
-              </span>
-              <h3
-                className="mb-2 text-[17px] font-semibold"
-                style={{ letterSpacing: "-0.01em" }}
-              >
-                {e.subject}
-              </h3>
-              <span
-                className="inline-block rounded-full px-3 py-1 text-[12px] font-medium"
-                style={{
-                  background: "linear-gradient(135deg, rgba(52,199,89,0.12), rgba(48,209,88,0.06))",
-                  color: "var(--accent)",
-                }}
-              >
-                {e.importance}
-              </span>
-            </div>
-          ))}
-        </div>
-
-        {/* Universities */}
-        <h2
-          className="mb-10 text-[22px] font-semibold tracking-tight sm:text-[24px]"
-          style={{ letterSpacing: "-0.03em" }}
-        >
-          Вузы
-        </h2>
-        <div className="mb-24 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {universities.map((u) => (
-            <div
-              key={u.name}
-              className="rounded-[var(--radius-lg)] p-6 transition-all duration-300"
               style={{
                 backgroundColor: "var(--card-bg)",
                 border: "1px solid var(--card-border)",
@@ -168,22 +140,16 @@ export default function EducationPage() {
               }}
             >
               <h3
-                className="mb-1 text-[17px] font-semibold text-accent"
-                style={{ letterSpacing: "-0.02em" }}
+                className="mb-2 text-[17px] font-semibold text-accent"
+                style={{ letterSpacing: "-0.01em" }}
               >
-                {u.name}
+                {s.level}
               </h3>
               <p
-                className="mb-1 text-[13px] font-medium"
-                style={{ color: "var(--fg-secondary)" }}
+                className="text-[22px] font-bold"
+                style={{ letterSpacing: "-0.02em" }}
               >
-                {u.city}
-              </p>
-              <p
-                className="text-[13px] leading-relaxed"
-                style={{ color: "var(--fg-secondary)" }}
-              >
-                {u.description}
+                {s.range}
               </p>
             </div>
           ))}
@@ -201,24 +167,24 @@ export default function EducationPage() {
             className="mb-3 text-[22px] font-semibold tracking-tight"
             style={{ letterSpacing: "-0.02em" }}
           >
-            Готовы начать?
+            Готовы проверить себя?
           </h2>
           <p
             className="mb-6 text-[15px]"
             style={{ color: "var(--fg-secondary)" }}
           >
-            Профессия инженера связи — это стабильность, рост и возможность
-            менять мир технологий.
+            Пройдите тест и узнайте, подходит ли вам профессия
+            инженера-проектировщика сетей.
           </p>
           <Link
-            href="/about"
+            href="/quiz"
             className="inline-flex items-center rounded-full px-7 py-3 text-[15px] font-medium text-white transition-all duration-200"
             style={{
               background: "linear-gradient(135deg, var(--gradient-start), var(--gradient-end))",
               boxShadow: "0 2px 12px rgba(52, 199, 89, 0.3)",
             }}
           >
-            Узнать больше о профессии
+            Пройти тест
             <svg
               className="ml-2 h-4 w-4"
               fill="none"
