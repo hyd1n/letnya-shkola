@@ -107,8 +107,12 @@ export default function CareerPage() {
                 e.currentTarget.style.transform = "translateY(0)";
               }}
             >
-              <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
-                <div className="flex items-center gap-4 sm:min-w-[200px]">
+              <div className="grid grid-cols-3 gap-6 sm:flex-row sm:items-start">
+                <div className="flex items-center gap-4 sm:min-w-[200px]" style={
+                  {
+                    height:"100%"
+                  }
+                }>
                   <div
                     className="flex h-14 w-14 shrink-0 items-center justify-center rounded-[var(--radius-md)] text-[15px] font-bold text-white"
                     style={{
@@ -136,7 +140,7 @@ export default function CareerPage() {
                     </h3>
                   </div>
                 </div>
-                <div className="flex-1">
+                <div className="flex-1 col-span-2">
                   <div className="mb-3 flex flex-wrap gap-3">
                     <span
                       className="rounded-full px-3 py-1 text-[12px] font-medium"
