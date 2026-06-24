@@ -15,9 +15,6 @@ export default function Footer() {
             >
               <span className="text-accent">⚡</span> Сетевой инженер
             </p>
-            <p className="mt-0.5 text-[12px]" style={{ color: "var(--fg-secondary)" }}>
-              Учебный проект
-            </p>
           </div>
           <p className="text-[12px]" style={{ color: "var(--fg-secondary)" }}>
             © {new Date().getFullYear()} Все права защищены

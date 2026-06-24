@@ -10,6 +10,7 @@ const navLinks = [
   { href: "/skills", label: "Навыки" },
   { href: "/career", label: "Карьера" },
   { href: "/education", label: "Образование" },
+  { href: "/ert", label: "ЭР-Телеком" },
   { href: "/quiz", label: "Тест" },
 ];
 
@@ -20,7 +21,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50">
       <div
-        className="mx-auto max-w-[980px] px-6 py-3"
+        className="mx-auto px-6 py-3"
         style={{
           backdropFilter: "saturate(180%) blur(20px)",
           WebkitBackdropFilter: "saturate(180%) blur(20px)",
